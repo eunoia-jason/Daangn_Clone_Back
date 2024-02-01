@@ -1,18 +1,17 @@
 package org.example.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class ForSale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +22,17 @@ public class ForSale {
     private String description;
     @Nullable
     private String image;
+    @Column(name = "reg_date", updatable = false)
+    private Timestamp regDate;
+    @Column(name = "mod_date")
+    private Timestamp modDate;
+
+    @PrePersist
+    protected void onCreate() {
+        regDate = new Timestamp(System.currentTimeMillis());
+    }
+    @PreUpdate
+    protected void onUpdate() {
+        modDate = new Timestamp(System.currentTimeMillis());
+    }
 }
