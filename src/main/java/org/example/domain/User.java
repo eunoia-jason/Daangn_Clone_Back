@@ -32,4 +32,5 @@ public class User {
         regDate = new Timestamp(System.currentTimeMillis());
         recentLogin = new Timestamp(System.currentTimeMillis());
     }
+
 }
