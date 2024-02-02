@@ -2,11 +2,9 @@ package org.example.domain;
 
 import lombok.*;
 import org.springframework.lang.Nullable;
+import java.sql.Timestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -17,12 +15,21 @@ import javax.persistence.Id;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-    private String userName;
-    private String userEmail;
-    private String userIntro;
+    private Long id;
+    private String name;
+    private String email;
+    private float temperature;
+    private String region;
     @Nullable
-    private String userImage;
+    private String image;
+    @Column(name = "reg_date", updatable = false)
+    private Timestamp regDate;
+    @Column(name = "recent_login")
+    private Timestamp recentLogin;
 
-
+    @PrePersist
+    protected void onCreate() {
+        regDate = new Timestamp(System.currentTimeMillis());
+        recentLogin = new Timestamp(System.currentTimeMillis());
+    }
 }
