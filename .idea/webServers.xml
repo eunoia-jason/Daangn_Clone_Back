@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="5e9218db-d139-4b38-90ab-edeac0d455e1" name="Walab" url="http://walab.handong.edu">
+        <fileTransfer rootFolder="/home2/class2022/p1_21900193" accessType="SFTP" host="walab.handong.edu" port="22" sshConfigId="c0acf0a5-7e93-4d19-a24a-2445e8e35df7" sshConfig="p1_21900193@walab.handong.edu:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" isUseRsync="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
