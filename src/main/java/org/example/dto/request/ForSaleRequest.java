@@ -8,6 +8,8 @@ public class ForSaleRequest {
     private String title;
     private String category;
     private int price;
+    private int interest;
+    private int view;
     private String description;
     private String image;
 }

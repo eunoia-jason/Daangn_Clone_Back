@@ -2,6 +2,7 @@ package org.example.service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.ForSale;
+import org.example.domain.User;
 import org.example.dto.request.ForSaleRequest;
 import org.example.repository.ForSaleRepository;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,17 @@ public class ForSaleService {
                 .image(request.getImage())
                 .build();
         forSaleRepository.save(forSale);
+    }
+
+    public ForSale update(Long id, ForSaleRequest request) {
+        ForSale forSale = forSaleRepository.findById(id).orElse(null);
+        if (forSale != null) {
+            forSaleRepository.save(forSale);
+        }
+        return forSale;
+    }
+
+    public void delete(Long id) {
+        forSaleRepository.deleteById(id);
     }
 }

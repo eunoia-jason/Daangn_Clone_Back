@@ -19,9 +19,14 @@ public class ForSale {
     private String title;
     private String category;
     private int price;
+    private int interest;
+    private int view;
     private String description;
     @Nullable
     private String image;
+    @ManyToOne
+    @JoinColumn(name = "User_id")
+    private User user;
     @Column(name = "reg_date", updatable = false)
     private Timestamp regDate;
     @Column(name = "mod_date")
@@ -30,9 +35,6 @@ public class ForSale {
     @PrePersist
     protected void onCreate() {
         regDate = new Timestamp(System.currentTimeMillis());
-    }
-    @PreUpdate
-    protected void onUpdate() {
         modDate = new Timestamp(System.currentTimeMillis());
     }
 }
