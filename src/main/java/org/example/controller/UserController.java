@@ -26,6 +26,12 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<User> sellerRead(@PathVariable Long id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok(user);
+    }
+
     @PatchMapping("/update/{id}")
     public ResponseEntity<User> userUpdate(@PathVariable Long id, @RequestBody UserRequest userRequest) {
         User updatedUser = userService.update(id, userRequest.getRegion());
