@@ -37,5 +37,6 @@
             </props>
         </property>
     </bean>
+
     <util:properties id="s3" location="classpath:s3.properties"/>
 </beans>

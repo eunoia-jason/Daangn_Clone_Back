@@ -32,9 +32,9 @@ public class ForSaleController {
         forSaleService.create(forSaleRequest);
     }
 
-    @PostMapping("/create/image")
-    public String forSaleCreateImage(@RequestParam("image") MultipartFile image) throws IOException {
-        return s3Service.upload(image, "forSale");
+    @PostMapping("/create/image/{email}")
+    public String forSaleCreateImage(@RequestParam("image") MultipartFile image, @PathVariable String email) throws IOException {
+        return s3Service.upload(image, email);
     }
 
     @GetMapping("/read")
@@ -51,6 +51,7 @@ public class ForSaleController {
 
     @PatchMapping("/update/{id}")
     public ResponseEntity<ForSale> forSaleUpdate(@PathVariable Long id, @RequestBody ForSaleRequest forSaleRequest) {
+        forSaleRequest.setImageUrl(s3Service.getImageUrl(forSaleRequest.getImage()));
         ForSale updatedForSale = forSaleService.update(id, forSaleRequest);
         return ResponseEntity.ok(updatedForSale);
     }
