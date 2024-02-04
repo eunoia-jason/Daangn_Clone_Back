@@ -5,9 +5,9 @@
       <paths name="Walab">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
-            <mapping deploy="/" local="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main" web="/" />
-            <mapping deploy="/" local="$PROJECT_DIR$/src/main" web="/" />
+            <mapping deploy="/webapps" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/webapps" local="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main" web="/" />
+            <mapping deploy="/webapps" local="$PROJECT_DIR$/src/main" web="/" />
           </mappings>
         </serverdata>
       </paths>

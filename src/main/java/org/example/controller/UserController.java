@@ -15,8 +15,9 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/create")
-    public void userCreate (@RequestBody UserRequest userRequest) {
-        userService.create(userRequest);
+    public ResponseEntity<User> userCreate (@RequestBody UserRequest userRequest) {
+        User user = userService.create(userRequest);
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/{email}")

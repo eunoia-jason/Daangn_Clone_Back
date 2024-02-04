@@ -15,7 +15,7 @@ import javax.persistence.EntityNotFoundException;
 public class UserService {
     private final UserRepository userRepository;
 
-    public void create( UserRequest request ){
+    public User create( UserRequest request ){
         User user = User.builder()
                 .id(request.getId())
                 .name(request.getName())
@@ -24,7 +24,7 @@ public class UserService {
                 .temperature(request.getTemperature())
                 .region(request.getRegion())
                 .build();
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public User findByEmail(String email) {
