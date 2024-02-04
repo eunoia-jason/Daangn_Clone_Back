@@ -1,6 +1,7 @@
 package org.example.dto.request;
 
 import lombok.Data;
+import org.example.domain.User;
 
 @Data
 public class ForSaleRequest {
@@ -12,4 +13,5 @@ public class ForSaleRequest {
     private int view;
     private String description;
     private String image;
+    private Long user;
 }

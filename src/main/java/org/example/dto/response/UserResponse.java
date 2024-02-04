@@ -1,9 +1,9 @@
-package org.example.dto.request;
+package org.example.dto.response;
 
 import lombok.Data;
 
 @Data
-public class UserRequest {
+public class UserResponse {
     private Long id;
     private String name;
     private String email;

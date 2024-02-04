@@ -7,6 +7,8 @@ import org.example.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -21,8 +23,6 @@ public class UserService {
                 .image(request.getImage())
                 .temperature(request.getTemperature())
                 .region(request.getRegion())
-                .regDate(request.getRegDate())
-                .recentLogin(request.getRecentLogin())
                 .build();
         userRepository.save(user);
     }
@@ -32,12 +32,9 @@ public class UserService {
     }
 
     public User update(Long id, String region) {
-        User user = userRepository.findById(id).orElse(null);
-        if (user != null) {
-            user.setRegion(region);
-            userRepository.save(user);
-        }
-        return user;
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not Found with ID: " + id));
+        user.setRegion(region);
+        return userRepository.save(user);
     }
 
     public void delete(Long id) {

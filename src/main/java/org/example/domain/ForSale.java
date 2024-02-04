@@ -25,7 +25,7 @@ public class ForSale {
     @Nullable
     private String image;
     @ManyToOne
-    @JoinColumn(name = "User_id")
+    @JoinColumn(name = "user_id")
     private User user;
     @Column(name = "reg_date", updatable = false)
     private Timestamp regDate;
@@ -35,6 +35,10 @@ public class ForSale {
     @PrePersist
     protected void onCreate() {
         regDate = new Timestamp(System.currentTimeMillis());
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
         modDate = new Timestamp(System.currentTimeMillis());
     }
 }
