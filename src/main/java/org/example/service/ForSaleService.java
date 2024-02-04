@@ -32,6 +32,7 @@ public class ForSaleService {
                 .view(request.getView())
                 .description(request.getDescription())
                 .image(request.getImage())
+                .imageUrl(request.getImageUrl())
                 .user(user)
                 .build();
         forSaleRepository.save(forSale);
@@ -41,7 +42,11 @@ public class ForSaleService {
         return forSaleRepository.findAll();
     }
 
-    public List<ForSale> readById(Long id) {
+    public ForSale readById(Long id)  {
+        return forSaleRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("ForSale not Found with ID: " + id));
+    }
+
+    public List<ForSale> readByUserId(Long id) {
         return forSaleRepository.findAllByUser_Id(id);
     }
 
@@ -53,6 +58,7 @@ public class ForSaleService {
         if (request.getPrice() != forSale.getPrice()) forSale.setPrice(request.getPrice());
         if (!request.getDescription().equals(forSale.getDescription())) forSale.setDescription(request.getDescription());
         if (request.getImage() != null && !request.getImage().equals(forSale.getImage())) forSale.setImage(request.getImage());
+        if (request.getImageUrl() != null && !request.getImageUrl().equals(forSale.getImageUrl())) forSale.setImageUrl(request.getImageUrl());
         forSale.setModDate(new Timestamp(System.currentTimeMillis()));
 
         return forSaleRepository.save(forSale);

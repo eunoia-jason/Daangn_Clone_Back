@@ -13,5 +13,6 @@ public class ForSaleRequest {
     private int view;
     private String description;
     private String image;
+    private String imageUrl;
     private Long user;
 }

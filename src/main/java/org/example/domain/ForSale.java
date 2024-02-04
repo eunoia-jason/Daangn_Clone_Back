@@ -24,6 +24,8 @@ public class ForSale {
     private String description;
     @Nullable
     private String image;
+    @Nullable
+    private String imageUrl;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

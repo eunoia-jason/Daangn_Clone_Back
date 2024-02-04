@@ -16,6 +16,7 @@ public class ForSaleResponse {
     private int view;
     private String description;
     private String image;
+    private String imageUrl;
     private Timestamp regDate;
     private UserIdDTO userId;
 
