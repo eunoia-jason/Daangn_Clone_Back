@@ -35,10 +35,6 @@ public class ForSale {
     @PrePersist
     protected void onCreate() {
         regDate = new Timestamp(System.currentTimeMillis());
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
         modDate = new Timestamp(System.currentTimeMillis());
     }
 }

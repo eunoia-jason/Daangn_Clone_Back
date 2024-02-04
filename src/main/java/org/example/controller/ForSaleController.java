@@ -45,6 +45,18 @@ public class ForSaleController {
         return ResponseEntity.ok(updatedForSale);
     }
 
+    @PatchMapping("/update/{id}/interest")
+    public ResponseEntity<ForSale> forSaleUpdateInterest(@PathVariable Long id, @RequestBody ForSaleRequest forSaleRequest) {
+        ForSale updatedForSale = forSaleService.updateInterest(id, forSaleRequest.getInterest());
+        return ResponseEntity.ok(updatedForSale);
+    }
+
+    @PatchMapping("/update/{id}/view")
+    public ResponseEntity<ForSale> forSaleUpdateView(@PathVariable Long id, @RequestBody ForSaleRequest forSaleRequest) {
+        ForSale updatedForSale = forSaleService.updateView(id, forSaleRequest.getView());
+        return ResponseEntity.ok(updatedForSale);
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> forSaleDelete(@PathVariable Long id) {
         forSaleService.delete(id);

@@ -53,6 +53,23 @@ public class ForSaleService {
         if (request.getPrice() != forSale.getPrice()) forSale.setPrice(request.getPrice());
         if (!request.getDescription().equals(forSale.getDescription())) forSale.setDescription(request.getDescription());
         if (request.getImage() != null && !request.getImage().equals(forSale.getImage())) forSale.setImage(request.getImage());
+        forSale.setModDate(new Timestamp(System.currentTimeMillis()));
+
+        return forSaleRepository.save(forSale);
+    }
+
+    public ForSale updateInterest(Long id, int interest) {
+        ForSale forSale = forSaleRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("ForSale not Found with ID: " + id));
+
+        forSale.setInterest(interest);
+
+        return forSaleRepository.save(forSale);
+    }
+
+    public ForSale updateView(Long id, int view) {
+        ForSale forSale = forSaleRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("ForSale not Found with ID: " + id));
+
+        forSale.setView(view);
 
         return forSaleRepository.save(forSale);
     }
