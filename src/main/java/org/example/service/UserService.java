@@ -31,10 +31,6 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not Found with ID: " + id));
-    }
-
     public User update(Long id, String region) {
         User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not Found with ID: " + id));
         user.setRegion(region);

@@ -20,15 +20,9 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("read/{email}")
     public ResponseEntity<User> userRead(@PathVariable String email) {
         User user = userService.findByEmail(email);
-        return ResponseEntity.ok(user);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<User> sellerRead(@PathVariable Long id) {
-        User user = userService.findById(id);
         return ResponseEntity.ok(user);
     }
 
