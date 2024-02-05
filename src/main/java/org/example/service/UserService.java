@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.sql.Timestamp;
 
 @Service
 @Transactional
@@ -28,7 +29,9 @@ public class UserService {
     }
 
     public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        User user = userRepository.findByEmail(email);
+        user.setRecentLogin(new Timestamp(System.currentTimeMillis()));
+        return userRepository.save(user);
     }
 
     public User update(Long id, String region) {
