@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.domain.User;
 import org.example.dto.request.UserRequest;
 import org.example.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

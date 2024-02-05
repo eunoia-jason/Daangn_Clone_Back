@@ -2,6 +2,8 @@ package org.example.dto.response;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class UserResponse {
     private Long id;
@@ -10,4 +12,5 @@ public class UserResponse {
     private float temperature;
     private String region;
     private String image;
+    private List<Long> interests;
 }

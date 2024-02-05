@@ -22,7 +22,6 @@ public class User {
     private String email;
     private float temperature;
     private String region;
-    @Nullable
     private String image;
     @Column(name = "reg_date", updatable = false)
     private Timestamp regDate;

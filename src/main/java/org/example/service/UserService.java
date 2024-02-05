@@ -29,9 +29,14 @@ public class UserService {
     }
 
     public User findByEmail(String email) {
-        User user = userRepository.findByEmail(email);
-        user.setRecentLogin(new Timestamp(System.currentTimeMillis()));
-        return userRepository.save(user);
+        if (userRepository.existsByEmail(email)) {
+            User user = userRepository.findByEmail(email);
+            user.setRecentLogin(new Timestamp(System.currentTimeMillis()));
+            return userRepository.save(user);
+        }
+        else {
+            return null;
+        }
     }
 
     public User update(Long id, String region) {
