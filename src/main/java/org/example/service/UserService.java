@@ -16,6 +16,7 @@ import java.sql.Timestamp;
 public class UserService {
     private final UserRepository userRepository;
 
+    // User Build 후 Create
     public User create( UserRequest request ){
         User user = User.builder()
                 .id(request.getId())
@@ -28,6 +29,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    // Email로 User find
     public User findByEmail(String email) {
         if (userRepository.existsByEmail(email)) {
             User user = userRepository.findByEmail(email);
@@ -39,12 +41,14 @@ public class UserService {
         }
     }
 
+    // User Update
     public User update(Long id, String region) {
         User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not Found with ID: " + id));
         user.setRegion(region);
         return userRepository.save(user);
     }
 
+    // User Delete
     public void delete(Long id) {
         userRepository.deleteById(id);
     }

@@ -26,29 +26,34 @@ public class ForSaleController {
     private final ForSaleService forSaleService;
     private final S3Service s3Service;
 
+    // 매물 Create
     @PostMapping("/create")
     public void forSaleCreate(@RequestBody ForSaleRequest forSaleRequest) {
         forSaleRequest.setImageUrl(s3Service.getImageUrl(forSaleRequest.getImage()));
         forSaleService.create(forSaleRequest);
     }
 
+    // 매물 이미지 s3에 업로드
     @PostMapping("/create/image/{email}")
     public String forSaleCreateImage(@RequestParam("image") MultipartFile image, @PathVariable String email) throws IOException {
         return s3Service.upload(image, email);
     }
 
+    // 매물 Read
     @GetMapping("/read")
     public ResponseEntity<List<ForSale>> forSaleRead() {
         List<ForSale> forSales = forSaleService.read();
         return ResponseEntity.ok(forSales);
     }
 
+    // 현재 로그인된 유저의 매물 Read
     @GetMapping("/read/{userId}")
     public ResponseEntity<List<ForSale>> forSaleReadByUserId(@PathVariable Long userId) {
         List<ForSale> forSales = forSaleService.readByUserId(userId);
         return ResponseEntity.ok(forSales);
     }
 
+    // 매물 Update
     @PatchMapping("/update/{id}")
     public ResponseEntity<ForSale> forSaleUpdate(@PathVariable Long id, @RequestBody ForSaleRequest forSaleRequest) {
         forSaleRequest.setImageUrl(s3Service.getImageUrl(forSaleRequest.getImage()));
@@ -56,21 +61,26 @@ public class ForSaleController {
         return ResponseEntity.ok(updatedForSale);
     }
 
+    // 매물 관심 수 Update
     @PatchMapping("/update/{id}/interest")
     public ResponseEntity<ForSale> forSaleUpdateInterest(@PathVariable Long id, @RequestBody ForSaleRequest forSaleRequest) {
         ForSale updatedForSale = forSaleService.updateInterest(id, forSaleRequest.getInterest());
         return ResponseEntity.ok(updatedForSale);
     }
 
+    // 매물 조회 수 Update
     @PatchMapping("/update/{id}/view")
     public ResponseEntity<ForSale> forSaleUpdateView(@PathVariable Long id, @RequestBody ForSaleRequest forSaleRequest) {
         ForSale updatedForSale = forSaleService.updateView(id, forSaleRequest.getView());
         return ResponseEntity.ok(updatedForSale);
     }
 
+    // 매물 Delete
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> forSaleDelete(@PathVariable Long id) {
-        s3Service.delete(forSaleService.readById(id).getImage());
+        if (forSaleService.readById(id).getImage() != null) {
+            s3Service.delete(forSaleService.readById(id).getImage());
+        }
         forSaleService.delete(id);
         return ResponseEntity.ok().build();
     }

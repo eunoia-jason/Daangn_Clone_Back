@@ -20,6 +20,7 @@ public class ForSaleService {
     private final ForSaleRepository forSaleRepository;
     private final UserRepository userRepository;
 
+    // 매물 Create
     public void create( ForSaleRequest request ){
         User user = userRepository.findById(request.getUser()).orElseThrow(() -> new EntityNotFoundException("User not Found with ID: " + request.getUser()));
 
@@ -38,18 +39,22 @@ public class ForSaleService {
         forSaleRepository.save(forSale);
     }
 
+    // 전체 매물 Read
     public List<ForSale> read()  {
         return forSaleRepository.findAll();
     }
 
+    // 매물 Read
     public ForSale readById(Long id)  {
         return forSaleRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("ForSale not Found with ID: " + id));
     }
 
+    // 유저 매물 Read
     public List<ForSale> readByUserId(Long id) {
         return forSaleRepository.findAllByUser_Id(id);
     }
 
+    // 매물 정보 Update
     public ForSale update(Long id, ForSaleRequest request) {
         ForSale forSale = forSaleRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("ForSale not Found with ID: " + id));
 
@@ -64,6 +69,7 @@ public class ForSaleService {
         return forSaleRepository.save(forSale);
     }
 
+    // 매물 관심 수 Update
     public ForSale updateInterest(Long id, int interest) {
         ForSale forSale = forSaleRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("ForSale not Found with ID: " + id));
 
@@ -72,6 +78,7 @@ public class ForSaleService {
         return forSaleRepository.save(forSale);
     }
 
+    // 매물 조회 수 Update
     public ForSale updateView(Long id, int view) {
         ForSale forSale = forSaleRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("ForSale not Found with ID: " + id));
 
@@ -80,6 +87,7 @@ public class ForSaleService {
         return forSaleRepository.save(forSale);
     }
 
+    // 매물 Delete
     public void delete(Long id) {
         forSaleRepository.deleteById(id);
     }

@@ -2,8 +2,6 @@ package org.example.dto.request;
 
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 public class UserRequest {
     private Long id;
@@ -12,5 +10,4 @@ public class UserRequest {
     private float temperature;
     private String region;
     private String image;
-    private List<Long> interests;
 }
